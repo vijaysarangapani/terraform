@@ -3,3 +3,6 @@ variable "ami_id" {
   default = "ami-09c813fb71547fc4f"
   description = "AMIAMI ID of join devops RHEL9_for Terraform practice"
 }
+variable "instance_type" {
+  default = "t2.micro"
+}
