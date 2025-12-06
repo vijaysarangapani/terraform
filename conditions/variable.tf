@@ -3,9 +3,12 @@ variable "ami_id" {
   default = "ami-09c813fb71547fc4f"
   description = "AMIAMI ID of join devops RHEL9_for Terraform practice"
 }
-variable "instance_type" {
-  default = "t2.micro"
+variable "environment" {
+  default = "dev"
 }
+#variable "instance_type" {
+#  default = var.environment == "dev"?"t3.micro":"t3.small"
+#}
 variable "cidr_blocks" {
   default =  ["0.0.0.0/0"]
 }
@@ -20,4 +23,12 @@ variable "to_port" {
 }
 variable "protocol" {
   default = "-1"
+}
+variable "common_tags" {
+  default = {
+    environment = "dev"
+  }
+}
+variable "tags" {
+  default = "sreejahost"
 }

@@ -1,10 +1,12 @@
 resource "aws_instance" "vm" {
   ami = var.ami_id
-  instance_type = var.instance_type
+  instance_type = var.environment == "dev"?"t3.micro":"t3.small"
 
-  tags = {
-    Name = "sreejahost"
+  tags = merge(var.common_tags,
+    {
+    Name = var.tags
   }
+)
 }
 resource "aws_security_group" "Creating_allow_all_tls_security_group" {
   name = "Creating_allow_all_tls_security_group"
