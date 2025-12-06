@@ -6,3 +6,18 @@ variable "ami_id" {
 variable "instance_type" {
   default = "t2.micro"
 }
+variable "cidr_blocks" {
+  default =  ["0.0.0.0/0"]
+}
+variable "ipv6_cidr_blocks" {
+  default = ["::/0"]
+}
+variable "from_port" {
+  default = 0
+}
+variable "to_port" {
+  default = 0
+}
+variable "protocol" {
+  default = "-1"
+}
