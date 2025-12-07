@@ -5,7 +5,7 @@ resource "aws_instance" "vm" {
 
   tags = merge(var.common_tags,
     {
-    Name = var.tags
+    Name = "${var.instance_name[count.index]}.${var.domain_name}"
   }
 )
 }

@@ -32,3 +32,9 @@ variable "common_tags" {
 variable "tags" {
   default = "sreejahost"
 }
+variable "instance_name"{
+  default = ["mongodb", "redis", "mysql"]
+}
+variable "domain_name" {
+  default = "sreeja.site"
+}
