@@ -3,8 +3,8 @@ resource "aws_instance" "vm" {
   ami = var.ami_id
   #for_each = toset(var.instance_name)
   #count = 3
-  #instance_type = each.value
-  instance_type = "t3.micro"
+  instance_type = each.value
+ #instance_type = "t3.micro"
   vpc_security_group_ids = [ aws_security_group.Creating_allow_all_tls_security_group.id ]
   #instance_type = var.environment == "dev"?"t3.micro":"t3.small"
 
