@@ -33,11 +33,12 @@ variable "tags" {
   default = "sreejahost"
 }
 variable "instance_name"{
-  default = {
+/*   default = {
     mangodb = "t3.micro"
     redis = "t3.micro"
     mysql = "t2.micro"
-  }
+  } */
+  default =  ["mongodb", "redis", "mysql", "rabbitmq"]
 }
 variable "domain_name" {
   default = "sreeja.site"
