@@ -38,3 +38,6 @@ variable "instance_name"{
 variable "domain_name" {
   default = "sreeja.site"
 }
+variable "zone_id" {
+  default = "Z02370613NFA2YD1CKRZ2"
+}
