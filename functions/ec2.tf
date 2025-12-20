@@ -4,18 +4,18 @@ resource "aws_instance" "vm" {
   #for_each = toset(var.instance_name)
   count = length(var.instance_name)
   #instance_type = each.value
-  instance_type = "t3.micro"
-  vpc_security_group_ids = [ aws_security_group.Creating_allow_all_tls_security_group.id ]
+  instance_type          = "t3.micro"
+  vpc_security_group_ids = [aws_security_group.Creating_allow_all_tls_security_group.id]
   #instance_type = var.environment == "dev"?"t3.micro":"t3.small"
+
 
   tags = {
     Name = "${var.instance_name[count.index]}.${var.domain_name}" # added interpolation here
-    #Name = each.key
   }
 }
 
 resource "aws_security_group" "Creating_allow_all_tls_security_group" {
-  name = "Creating_allow_all_tls_security_group"
+  name        = "Creating_allow_all_tls_security_group"
   description = "Creating_allow_all_tls_security_group"
 
   ingress {
@@ -32,7 +32,7 @@ resource "aws_security_group" "Creating_allow_all_tls_security_group" {
     cidr_blocks      = var.cidr_blocks
     ipv6_cidr_blocks = var.ipv6_cidr_blocks
   }
-   tags = {
-        name = "Creating_allow_all_tls_security_group"
-   } 
+  tags = {
+    name = "Creating_allow_all_tls_security_group"
+  }
 }

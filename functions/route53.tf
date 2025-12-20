@@ -1,6 +1,6 @@
 resource "aws_route53_record" "https" {
   #for_each = aws_instance.vm
-  count = length(var.instance_name)
+  count   = length(var.instance_name)
   zone_id = var.zone_id
   #name = "${each.key}.${var.domain_name}" # adding DNS and Public IP mysql.sreeja.site using for loop it uses key and value pair
   name    = "${var.instance_name[count.index]}.${var.domain_name}" # adding DNS and Public IP mysql.sreeja.site

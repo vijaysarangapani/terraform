@@ -1,6 +1,6 @@
 variable "ami_id" {
-  type = string
-  default = "ami-09c813fb71547fc4f"
+  type        = string
+  default     = "ami-09c813fb71547fc4f"
   description = "AMIAMI ID of join devops RHEL9_for Terraform practice"
 }
 variable "environment" {
@@ -10,7 +10,7 @@ variable "environment" {
 #  default = var.environment == "dev"?"t3.micro":"t3.small"
 #}
 variable "cidr_blocks" {
-  default =  ["0.0.0.0/0"]
+  default = ["0.0.0.0/0"]
 }
 variable "ipv6_cidr_blocks" {
   default = ["::/0"]
@@ -30,15 +30,18 @@ variable "common_tags" {
   }
 }
 variable "tags" {
-  default = "sreejahost"
+  default = {
+    project   = "netc"
+    Terraform = "true"
+  }
 }
-variable "instance_name"{
-/*   default = {
+variable "instance_name" {
+  /*   default = {
     mangodb = "t3.micro"
     redis = "t3.micro"
     mysql = "t2.micro"
   } */
-  default =  ["mongodb", "redis", "mysql", "rabbitmq"]
+  default = ["mongodb", "redis", "mysql", "rabbitmq"]
 }
 variable "domain_name" {
   default = "sreeja.site"
