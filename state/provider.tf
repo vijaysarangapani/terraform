@@ -6,11 +6,12 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "hclsreeja"
-    key = "hclsreeja-sreeja-terraform-s3-bucket" #User Freindly name
-    region = "us-east-1"
+    bucket = "hclsreeja"                            #bucket name s3
+    key    = "hclsreeja-sreeja-terraform-s3-bucket" #User Freindly name key
+    region = "us-east-1"                            #region
     encrypt = true
-    dynamodb_table = "sreeja-remote-state"
+    use_lockfile = true
+    #dynamodb_table = "sreeja-remote-state" #table name
   }
 }
 provider "aws" {
