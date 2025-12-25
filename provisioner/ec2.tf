@@ -1,13 +1,19 @@
 resource "aws_instance" "vm" {
-  ami           = var.ami_id
-  instance_type = var.instance_type
-  vpc_security_group_ids = [ aws_security_group.Creating_allow_all_tls_security_group.id ]
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  vpc_security_group_ids = [aws_security_group.Creating_allow_all_tls_security_group.id]
 
   tags = {
     Name = "dxc"
   }
   provisioner "local-exec" {
     command = "echo ${self.private_ip} > inventory"
+  }
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = self.public_ip
   }
   provisioner "local-exec" {
     when    = destroy
@@ -17,7 +23,7 @@ resource "aws_instance" "vm" {
 }
 
 resource "aws_security_group" "Creating_allow_all_tls_security_group" {
-  name = "Creating_allow_all_tls_security_group"
+  name        = "Creating_allow_all_tls_security_group"
   description = "Creating_allow_all_tls_security_group"
 
   ingress {
@@ -34,7 +40,7 @@ resource "aws_security_group" "Creating_allow_all_tls_security_group" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-   tags = {
-        name = "Creating_allow_all_tls_security_group"
-   } 
+  tags = {
+    name = "Creating_allow_all_tls_security_group"
+  }
 }
