@@ -9,17 +9,29 @@ resource "aws_instance" "vm" {
   provisioner "local-exec" {
     command = "echo ${self.private_ip} > inventory"
   }
+
+  provisioner "local-exec" {
+    when    = destroy
+    command = "echo 'Destroying the vm'"
+  }
   connection {
     type     = "ssh"
     user     = "ec2-user"
     password = "DevOps321"
     host     = self.public_ip
   }
-  provisioner "local-exec" {
-    when    = destroy
-    command = "echo 'Destroying the vm'"
+  provisioner "remote-exec" {
+    inline = [
+      "sudo dnf install nginx -y",
+      "sudo systemctl start nginx",
+     ]
   }
-
+  provisioner "remote-exec" {
+    when = destroy1
+    inline = [ 
+      "sudo systemctl stop nginx"
+     ]
+  }
 }
 
 resource "aws_security_group" "Creating_allow_all_tls_security_group" {
