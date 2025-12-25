@@ -23,7 +23,9 @@ resource "aws_security_group" "Creating_allow_all_tls_security_group" {
   egress {
     from_port        = var.from_port
     to_port          = var.to_port
-    protocol         = var.protocol
+    protocol         = var.protocol.
+
+    
     cidr_blocks      = var.cidr_blocks
     ipv6_cidr_blocks = var.ipv6_cidr_blocks
   }
