@@ -27,7 +27,7 @@ resource "aws_instance" "vm" {
      ]
   }
   provisioner "remote-exec" {
-    when = destroy1
+    when = destroy
     inline = [ 
       "sudo systemctl stop nginx"
      ]
