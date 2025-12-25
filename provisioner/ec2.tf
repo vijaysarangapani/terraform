@@ -9,6 +9,11 @@ resource "aws_instance" "vm" {
   provisioner "local-exec" {
     command = "echo ${self.private_ip} > inventory"
   }
+  provisioner "local-exec" {
+    when    = destroy
+    command = "echo 'Destroying the vm'"
+  }
+
 }
 
 resource "aws_security_group" "Creating_allow_all_tls_security_group" {
